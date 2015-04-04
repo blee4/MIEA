@@ -1,4 +1,4 @@
-package controllers.main;
+package mea.riotApi;
 
 /**
  * CLass for retrieving API developer-specific resources.
