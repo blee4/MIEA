@@ -1,0 +1,34 @@
+New log file opened at Sat Apr 04 01:42:36 AEDT 2015 by 6056@Soprano
+Taking next connection to: 52808
+New client attempting to connect on port: 52809-52808
+  Address = /192.168.0.3:52808
+This client on port 52809 has uuid 606f6749-9709-4001-adc2-6f2760c2e279 configName activator humanReadableName Activator protocolVersion 1 featureTags Vector()
+Connected Clients: activator-606f6749-9709-4001-adc2-6f2760c2e279
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 52808
