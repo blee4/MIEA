@@ -1,45 +1,41 @@
 package mea.riotApi;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.logging.Level;
 
-import mea.app.MeaLogger;
+import mea.app.util.FileReader;
+import mea.app.util.MeaLogger;
 
+/** A class containing developer-specific details used to access the Riot API */
 public final class Developer
 {
-    private static String developerKey;
+    private static Developer developer;
 
+    /** Riot API developer key */
+    private String developerKey;
+
+    /** Set the developer key from file */
     private Developer()
     {
         // Read file
-        Path file = Paths.get(DevResource.getDevKey());
-        InputStream inputStream;
-        try
-        {
-            inputStream = Files.newInputStream(file);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        developerKey = FileReader.readFile(DevResource.getDevKey());
 
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null)
-            {
-                Developer.developerKey = line;
-            }
-        }
-        catch (IOException e)
+        if ((developerKey == null) || developerKey.equals(""))
         {
-            MeaLogger.log(Level.SEVERE, "Cannot set API access settings", e);
+            MeaLogger.log(Level.SEVERE, "Cannot set API settings because the developer key was empty");
             System.exit(1);
         }
     }
 
+    /**
+     * @return Gets the developer key.
+     */
     public static String getDeveloperKey()
     {
-        return Developer.developerKey;
+        if (developer == null)
+        {
+            developer = new Developer();
+        }
+
+        return developer.developerKey;
     }
 }

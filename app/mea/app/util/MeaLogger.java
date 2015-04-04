@@ -1,16 +1,11 @@
-package mea.app;
+package mea.app.util;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MeaLogger
+public final class MeaLogger
 {
     private static final Logger MEA_LOGGER = Logger.getLogger("MEA-Logger");
-
-    public MeaLogger()
-    {
-        // forgot
-    }
 
     /**
      * Typically used for logging catastrophic events.

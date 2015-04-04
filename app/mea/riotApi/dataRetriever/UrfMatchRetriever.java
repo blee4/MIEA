@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 
-import mea.app.MeaLogger;
+import mea.app.util.MeaLogger;
 
 import com.robrua.orianna.api.core.AsyncRiotAPI;
 import com.robrua.orianna.type.api.Action;
@@ -25,11 +25,11 @@ public class UrfMatchRetriever
     public UrfMatchRetriever() throws ParseException
     {
         // TODO change this to dynamically retrieve the current time in 5 minute intervals
-        String baseDate = "Apr 01 2015 10:10:00.000 UTC";
+        String baseDate = "Apr 01 2015 19:10:00.000 AEDT";
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
         Date date = dateFormat.parse(baseDate);
-        MeaLogger.log(Level.INFO, "Requesting URF matches at the date: " + date.toString());
+        MeaLogger.log(Level.INFO, "Requesting URF matches at: " + date.toString());
 
         AsyncRiotAPI.getURFMatches(new Action<List<Match>>()
         {

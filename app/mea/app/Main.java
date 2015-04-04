@@ -3,6 +3,7 @@ package mea.app;
 import java.text.ParseException;
 import java.util.logging.Level;
 
+import mea.app.util.MeaLogger;
 import mea.database.DatabaseDriver;
 import mea.riotApi.Developer;
 import mea.riotApi.dataRetriever.UrfMatchRetriever;
@@ -10,16 +11,14 @@ import mea.riotApi.dataRetriever.UrfMatchRetriever;
 import com.robrua.orianna.api.core.RiotAPI;
 import com.robrua.orianna.type.core.common.Region;
 
-/**
- * Entry point for server setup.
- * MEA application will be started after setup has finished.
- */
+/** Entry point for MEA application startup. */
 public class Main
 {
     public static void main(String[] args)
     {
         // Set API access settings and server region
         MeaLogger.log(Level.INFO, "Setting Riot API access settings");
+
         RiotAPI.setAPIKey(Developer.getDeveloperKey());
         RiotAPI.setMirror(Region.NA);
         RiotAPI.setRegion(Region.NA);

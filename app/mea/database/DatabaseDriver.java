@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-import mea.app.MeaLogger;
+import mea.app.util.MeaLogger;
 
 /** Driver for creating a connection to the database */
 public final class DatabaseDriver
@@ -17,18 +17,21 @@ public final class DatabaseDriver
 
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
+    /** */
+    private static DatabaseDriver databaseDriver;
+
     /** Connection to the database */
-    private static Connection connection;
+    private Connection connection;
 
     /** Establishes a DB connection */
     private DatabaseDriver()
     {
         try
         {
-            MeaLogger.log(Level.INFO, "Opening a connection to the databse");
+            MeaLogger.log(Level.FINEST, "Opening a connection to the databse");
             Class.forName(JDBC_DRIVER);
-            DatabaseDriver.connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-            MeaLogger.log(Level.INFO, "Database connection successfully retrieved");
+            this.connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            MeaLogger.log(Level.FINEST, "Database connection successfully retrieved");
         }
         catch (ClassNotFoundException e)
         {
@@ -70,6 +73,10 @@ public final class DatabaseDriver
      */
     public static Connection getConnection()
     {
-        return DatabaseDriver.connection;
+        if (databaseDriver == null)
+        {
+            databaseDriver = new DatabaseDriver();
+        }
+        return databaseDriver.connection;
     }
 }
