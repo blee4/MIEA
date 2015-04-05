@@ -2,6 +2,7 @@ package mea.riotApi.dataRetriever;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import mea.app.util.MeaLogger;
+import mea.database.QueryEntryPoint;
 
 import com.robrua.orianna.api.core.AsyncRiotAPI;
 import com.robrua.orianna.type.api.Action;
@@ -22,11 +24,11 @@ import com.robrua.orianna.type.exception.APIException;
  */
 public class UrfMatchRetriever
 {
+    // TODO change this to dynamically retrieve the current time in 5 minute intervals
+    private final String baseDate = "Apr 02 2015 20:10:00.000 AEDT";
+
     public UrfMatchRetriever() throws ParseException
     {
-        // TODO change this to dynamically retrieve the current time in 5 minute intervals
-        String baseDate = "Apr 01 2015 19:10:00.000 AEDT";
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
         Date date = dateFormat.parse(baseDate);
         MeaLogger.log(Level.INFO, "Requesting URF matches at: " + date.toString());
@@ -54,7 +56,6 @@ public class UrfMatchRetriever
      */
     private void retrieveData(final List<Match> matches)
     {
-        // TODO store everything in a db or something
         for (Match match : matches)
         {
             System.out.println("Match ID: " + match.getID());
@@ -66,6 +67,13 @@ public class UrfMatchRetriever
                 System.out.println("      Champion: " + champion.getName());
             }
 
+            // Store the match
+            MeaLogger.log(Level.INFO, "Registering match ID to the database!");
+            QueryEntryPoint queryEntryPoint = new QueryEntryPoint();
+
+            // TODO date is incorrect, it's supposed to get the 5 min bucket that we call on the API
+            LocalDateTime localDateTime = LocalDateTime.now();
+            queryEntryPoint.storeRetrievedMatches(match, localDateTime);
             System.out.println();
         }
     }

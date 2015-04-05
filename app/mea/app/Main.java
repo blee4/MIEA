@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.logging.Level;
 
 import mea.app.util.MeaLogger;
+import mea.database.CreateTables;
 import mea.database.DatabaseDriver;
 import mea.riotApi.Developer;
 import mea.riotApi.dataRetriever.UrfMatchRetriever;
@@ -26,6 +27,9 @@ public class Main
         // Check connection to the database
         MeaLogger.log(Level.INFO, "Checking database connection settings");
         DatabaseDriver.getConnection();
+
+        // Check tables of database
+        CreateTables.verifyTables();
 
         // Finally, start the application if all the setup has passed
         MeaLogger.log(Level.INFO, "Starting MEA application!\n");
